@@ -1,0 +1,20 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+
+development:
+  <<: *default
+  database: webgl_sample_development
+
+test:
+  <<: *default
+  database: webgl_sample_test
+
+
+production:
+  <<: *default
+  database: webgl_sample_production
