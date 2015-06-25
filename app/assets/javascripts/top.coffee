@@ -26,11 +26,11 @@ $ ->
   # Mesh
   for i in [1..10]
     console.log(i)
-    shereSize = r(1)
+    shereSize = 5
     rGeometry = new THREE.SphereGeometry(shereSize)
     rMaterial = new THREE.MeshBasicMaterial({color: "#fff"})
     shere[i] = new THREE.Mesh(rGeometry, rMaterial)
-    shere[i].position.set(5+r(4000), 5+r(30), 5+r(30))
+    shere[i].position.set(50+r(400),  100+r(30), 50+r(30))
     scene.add(shere[i])
 
   # helper
@@ -39,14 +39,14 @@ $ ->
   scene.add(axis)
 
   # camera
-  camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000)
-  camera.position.set(200, 100, 500)
+  camera = new THREE.PerspectiveCamera(45, width / height, 1, 1500)
+  camera.position.set(0, 180, 300)
   camera.lookAt(cube.position)
 
   # Rendering
   renderer = new THREE.WebGLRenderer
   renderer.setSize 1000, 500
-  renderer.setClearColor("#FAF0E6", 1)
+  renderer.setClearColor("#333", 1)
   document.getElementById('stage').appendChild renderer.domElement
 
   render =  () =>
