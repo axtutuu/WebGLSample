@@ -1,7 +1,7 @@
 $ ->
-
   width = 500
   height = 300
+  shere = []
 
   #Scene
   scene = new THREE.Scene()
@@ -19,6 +19,19 @@ $ ->
   cube = new THREE.Mesh(geometry, material)
   cube.position.set(0,0,0)
   scene.add(cube)
+
+  r = (n) ->
+    Math.floor(Math.random() * (n * 1))
+
+  # Mesh
+  for i in [1..10]
+    console.log(i)
+    shereSize = r(50)
+    rGeometry = new THREE.SphereGeometry(shereSize)
+    rMaterial = new THREE.MeshBasicMaterial({color: "#fff"})
+    shere[i] = new THREE.Mesh(rGeometry, rMaterial)
+    shere[i].position.set(50+r(400), 50+r(300), 50+r(300))
+    scene.add(shere[i])
 
   # helper
   axis = new THREE.AxisHelper(1000)
@@ -39,14 +52,19 @@ $ ->
 
   render =  () =>
     requestAnimationFrame(render)
-    # cube.rotation.x += 1 * Math.PI / 180
-    # cube.rotation.y += 1 * Math.PI / 180
-    # cube.rotation.z += 1 * Math.PI / 180
-    # cube.position.x = Math.sin(new Date().getTime() / 200) * 100
-    # cube.position.z = Math.cos(new Date().getTime() / 200) * 100
+    for i in [1..10]
+      shere[i].rotation.x += i * Math.PI / 180
+      shere[i].rotation.y += i * Math.PI / 180
+      shere[i].rotation.z += i * Math.PI / 180
+      shere[i].position.x = Math.sin(new Date().getTime() / 200+i) * 1000
+      shere[i].position.z = Math.cos(new Date().getTime() / 200+i) * 100
     renderer.render(scene, camera)
+
 
   render()
   # control
   control = new THREE.OrbitControls(camera, renderer.domElement)
   return
+
+
+
